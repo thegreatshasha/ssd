@@ -10,7 +10,7 @@ class TestAvalon(unittest.TestCase):
         def _test_convnet(self):
             pass # No idea how to test this yet
             
-        def test_conv2d(self):
+        def _test_conv2d(self):
             pass
             
         def test_defaultgen(self):
@@ -36,7 +36,7 @@ class TestAvalon(unittest.TestCase):
             box4 = np.array([0,0,4,2,0,0])
             np.testing.assert_almost_equal(iou(box3, box4), 0.5454, 3, 'IOU not working')
         
-        def test_shiftgen(self):
+        def _test_shiftgen(self):
             # This is just a linear convolution2d and needs no testing
             pass
         
