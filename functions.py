@@ -12,7 +12,7 @@ def convnet(I):
     """
     pass
 
-def defaultgen( I, F, width, height): 
+def defaultgen_legacy( I, F, width, height): 
     """
     Generates an array of default boxes: TESTED
     
@@ -40,6 +40,19 @@ def defaultgen( I, F, width, height):
             boxes[i,j,:] = np.array([cx,cy,width, height, 0, 0])
             
     return boxes.reshape(boxes.shape[0] * boxes.shape[1], 6)
+
+def defaultgen(I, F, width, height):
+    scale = I.shape[2] / F.shape[2]
+    offset = np.ones((2,F.shape[2],F.shape[3]))
+    iterator = np.flip(np.indices((F.shape[2],F.shape[3])), axis=0)
+    xys = offset * ((scale-1)/2) + iterator * scale
+    xys = np.moveaxis(xys,0,2)
+    ws = np.full((F.shape[2],F.shape[3],1), width)
+    hs = np.full((F.shape[2],F.shape[3],1), height)
+    class_scores = np.zeros((F.shape[2],F.shape[3],2))
+    print(xys.shape, ws.shape, hs.shape, class_scores.shape)
+    zs = np.dstack([xys, ws, hs, class_scores])
+    return zs.reshape((zs.shape[0] * zs.shape[1], 6))
 
 def shiftgen(F):
     """ 
