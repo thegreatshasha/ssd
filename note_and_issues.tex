@@ -1,0 +1,61 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\begin{document}
+
+
+\section*{Tasks}
+
+\begin{itemize}
+\item check if the positive indices and negative indices generation is correct for the generated square ground truths
+\item add sorting to the negative indices  
+
+\item add for loop to the whole thing to do one forward pass 
+\item add backward pass 
+ 
+
+\end{itemize}
+
+
+\section*{Notes}
+\begin{itemize}
+\item Keep in mind that \textbf{img} variable is just the first image of the generated set of images
+
+\end{itemize}
+
+
+
+
+\section*{Issues} 
+\begin{itemize}
+\item Have to be careful about the what is the dimension of the ground truth box. So for now will stick with the form  
+
+
+\begin{itemize}
+\item bounding box : [center x, center y, width, height,class 1, class 2]
+\item Single Image  : [number channels, size x, size y]  
+\end{itemize}
+    
+\item The tensor size then becomes    
+    
+
+\begin{itemize}
+\item \textbf{gt} : [1, number of images,  6 ]
+\item \textbf{images} : [1, number of images, number channels, size x, size y]  
+\end{itemize}    
+
+
+\item The above names should be the names of the variables in the code.
+ 
+\item The pos indices dont make sense for the generated boxes. Have to check that carefully  
+
+\item\textit{Fixed the above issues, was using the top right rather than the center.}   
+    
+\end{itemize}
+
+\end{document}
